@@ -4,7 +4,7 @@ import {
 } from '@nestjs/common';
 import { TaskManagerService } from './task-manager.service';
 
-@Controller('task-manager')
+@Controller('tasks')
 export class TaskManagerController {
   constructor(private readonly taskManagerService: TaskManagerService) {}
 
