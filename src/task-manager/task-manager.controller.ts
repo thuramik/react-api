@@ -1,6 +1,6 @@
 import {
   Controller,
-  Get,
+  Get, Post, Delete,
 } from '@nestjs/common';
 import { TaskManagerService } from './task-manager.service';
 
@@ -11,5 +11,15 @@ export class TaskManagerController {
   @Get()
   findAll() {
     return this.taskManagerService.findAll();
+  }
+
+  @Post()
+  create() {
+    return true;
+  }
+
+  @Delete()
+  delete() {
+    return true;
   }
 }
