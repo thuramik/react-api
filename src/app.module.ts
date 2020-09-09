@@ -7,7 +7,7 @@ import { Connection } from 'typeorm';
 
 @Module({
   imports: [
-      TypeOrmModule.forRoot({autoLoadEntities: true}),
+      TypeOrmModule.forRoot(),
       TaskManagerModule
   ],
   controllers: [AppController],
