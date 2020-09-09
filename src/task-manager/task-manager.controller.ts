@@ -1,8 +1,11 @@
 import {
   Controller,
-  Get, Post, Delete,
+  Get, Post, Delete, Body, Param, Put,
 } from '@nestjs/common';
 import { TaskManagerService } from './task-manager.service';
+import {CreateTaskDto} from "./dto/create-task.dto";
+import {Task} from "./entities/task.entity";
+import {UpdateTaskDto} from "./dto/update-task.dto";
 
 @Controller('tasks')
 export class TaskManagerController {
@@ -13,13 +16,27 @@ export class TaskManagerController {
     return this.taskManagerService.findAll();
   }
 
-  @Post()
-  create(task) {
-    return this.taskManagerService.add(task);
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
+    const task = this.taskManagerService.findById(id);
+    task.then(task => {
+      task.isCompleted = updateTaskDto.isCompleted;
+      this.taskManagerService.save(task);
+    })
+    return;
   }
 
-  @Delete()
-  delete(id) {
-    return this.taskManagerService.remove(id);
+  @Post()
+  create(@Body() createTaskDto: CreateTaskDto) {
+    const newTask = new Task();
+    newTask.title = createTaskDto.title;
+    this.taskManagerService.add(newTask);
+    return;
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: number) {
+    this.taskManagerService.remove(id);
+    return;
   }
 }

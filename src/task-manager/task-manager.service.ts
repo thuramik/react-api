@@ -32,6 +32,14 @@ export class TaskManagerService {
     return this.tasksRepository.find();
   }
 
+  findById(id): Promise<Task> {
+    return this.tasksRepository.findOneOrFail({ id });
+  }
+
+  async save(task: Task): Promise<void> {
+    await this.tasksRepository.save(task);
+  }
+
   async add(task: Task): Promise<void> {
     await this.tasksRepository.insert(task);
   }
