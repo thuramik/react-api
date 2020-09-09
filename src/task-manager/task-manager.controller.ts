@@ -14,12 +14,12 @@ export class TaskManagerController {
   }
 
   @Post()
-  create() {
-    return true;
+  create(task) {
+    return this.taskManagerService.add(task);
   }
 
   @Delete()
-  delete() {
-    return true;
+  delete(id) {
+    return this.taskManagerService.remove(id);
   }
 }

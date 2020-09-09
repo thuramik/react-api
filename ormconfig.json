@@ -1,0 +1,14 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "admin",
+  "password": "admin",
+  "database": "jira",
+  "synchronize": true,
+  "entities": ["src/**/entities/*.ts"],
+  "migrations": ["src/migration/*.js"],
+  "cli": {
+    "migrationsDir": "src/migrations"
+  }
+}
